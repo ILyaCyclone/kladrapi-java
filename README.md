@@ -5,7 +5,8 @@ See: http://www.json.org/ , https://code.google.com/p/org-json-java/downloads/li
 
 Oracle JDeveloper 11.1.2.3 project.
 
-Usage Example:
+# Usage Example
+```java
 // демонстрационные токен и ключ
 String token = "51dfe5d42fb2b43e3300006e";
 String key = "86a2c2a06f1b2451a87d05512cc2c3edfdf41969";
@@ -25,3 +26,4 @@ System.out.println("Улицы Москвы на \"ново\":");
 for (KladrObject street : streetList) {
     System.out.println(street.getType() + " " + street.getName());
 }
+```
