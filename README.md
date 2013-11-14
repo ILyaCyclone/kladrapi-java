@@ -1,4 +1,5 @@
-﻿Java client for kladr-api.ru
+Java client for kladr-api.ru
+See: http://kladr-api.ru/
 
 Requires org.json JAR in you classpath.
 See: http://www.json.org/ , https://code.google.com/p/org-json-java/downloads/list 
