@@ -7,6 +7,9 @@ import java.net.URLEncoder;
 
 import java.util.logging.Logger;
 
+/**
+ * Class for building request url
+ */
 public class KladrApiUrlBuilder {
     public KladrApiUrlBuilder() {
         super();
@@ -14,7 +17,6 @@ public class KladrApiUrlBuilder {
 
     public KladrApiUrlBuilder(String contentType, String query, Integer limit) {
         super();
-        //        this.contentType = contentType;
         setContentType(contentType);
         this.query = query;
         this.limit = limit;
@@ -37,45 +39,6 @@ public class KladrApiUrlBuilder {
         }
         return new StringBuilder(KLADR_API_BASE_URL).append("&token=").append(token).append("&key=").append(key).toString();
     }
-
-    //    private String token, key;
-    //
-    //    public KladrApiUrlBuilder(String token, String key) {
-    //        this.token = token;
-    //        this.key = key;
-    //    }
-    //
-    //    public KladrApiUrlBuilder setToken(String token) {
-    //        this.token = token;
-    //        return this;
-    //    }
-    //
-    //    public KladrApiUrlBuilder setKey(String key) {
-    //        this.key = key;
-    //        return this;
-    //    }
-
-    //    public String getBaseUrl(String token, String key) {
-    //        return new StringBuilder(KLADR_AP_URL).append("?token=").append(token).append("&key=").append(key).toString();
-    //    }
-
-    //    public String buildFullUrl() {
-    //        return this.buildFullUrl(true);
-    //    }
-    //
-    //    public String buildFullUrl(boolean encodeQuery) {
-    //        StringBuilder builder = new StringBuilder(KLADR_API_BASE_URL);
-    //        builder.append("?token=").append(token);
-    //        builder.append("&key=").append(key);
-    //        builder.append(this.build(encodeQuery));
-    //
-    //        return builder.toString();
-    //    }
-    //
-    //    public KladrApiUrlBuilder setUrlParams(String urlParams) {
-    //        this.urlParams = urlParams;
-    //        return this;
-    //    }
 
     public KladrApiUrlBuilder setContentType(String contentType) {
         if (!(contentType.equalsIgnoreCase(CONTENT_TYPE_DISTRICT) || contentType.equalsIgnoreCase(CONTENT_TYPE_CITY) ||
@@ -130,31 +93,31 @@ public class KladrApiUrlBuilder {
         return URLEncoder.encode(string, encoding);
     }
 
+    /**
+     * Builds URL parameters from instance fields
+     */ 
     @Override
     public String toString() {
         return toString(true);
     }
 
+    /**
+     * Builds URL parameters from instance fields
+     * @param encodeQuery - apply encoding to query (useneeded for Russian symbols)
+     */ 
     public String toString(boolean encodeQuery) {
-        //        if (this.contentType == null && (this.urlParams == null || !this.urlParams.contains("contentType"))) {
-        //            throw new NullPointerException("contentType is required");
-        //        }
-        if (this.contentType == null) {
+         if (this.contentType == null) {
             throw new NullPointerException("contentType is required");
         }
-        //        if ((this.contentType.equals(KLADR_STREET) || (this.urlParams != null && !urlParams.contains("contentType=street")))
-        //            && (this.cityId == null || (this.urlParams != null && !urlParams.contains("cityId")))
-        //        ) {
-        //            throw new NullPointerException("cityId is required when contentType is street");
-        //        }
+   
         if (this.contentType.equals(CONTENT_TYPE_STREET) && this.cityId == null) {
             throw new NullPointerException("cityId is required when contentType is street");
         }
 
         StringBuilder builder = new StringBuilder();
-        //        if (this.contentType != null) {
+   
         builder.append("&contentType=").append(this.contentType);
-        //        }
+
         if (this.regionId != null) {
             builder.append("&regionId=").append(this.regionId);
         }
@@ -174,9 +137,6 @@ public class KladrApiUrlBuilder {
         if (this.limit != null) {
             builder.append("&limit=").append(this.limit);
         }
-        //        if (this.urlParams != null) {
-        //            builder.append(urlParams);
-        //        }
 
         if (query != null) {
             if (encodeQuery) {
