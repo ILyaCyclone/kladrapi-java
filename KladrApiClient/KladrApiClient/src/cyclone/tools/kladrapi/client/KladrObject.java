@@ -11,7 +11,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/*
+/* POJO class to store KLADR object.
+ * kladr-api service response result example:
+ *
  * "id": "2800200000100",
  * "name": "Архара",
  * "zip": "676740",
@@ -113,13 +115,13 @@ public class KladrObject {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         if (this.typeShort.equals("проезд") || this.typeShort.equals("км")) {
-            // исключения: проезд, км
+            // exclusion
             builder.append(name).append(" ").append(typeShort);
         } else {
             builder.append(typeShort).append(". ").append(name);
         }
 
-        // или более простой способ?
+        // or easier way
         // builder.append(this.name).append(" ").append(typeShort);
 
         if (parents != null && !parents.isEmpty()) {
@@ -141,40 +143,31 @@ public class KladrObject {
     @Override
     public boolean equals(Object object) {
         if (this == object) {
-            //            System.out.println(1);
             return true;
         }
         if (!(object instanceof KladrObject)) {
-            //            System.out.println(2);
             return false;
         }
         final KladrObject other = (KladrObject)object;
         if (!(id == null ? other.id == null : id.equals(other.id))) {
-            //            System.out.println(3);
             return false;
         }
         if (!(name == null ? other.name == null : name.equals(other.name))) {
-            //            System.out.println(4);
             return false;
         }
         if (!(zip == null ? other.zip == null : zip.equals(other.zip))) {
-            //            System.out.println(5);
             return false;
         }
         if (!(type == null ? other.type == null : type.equals(other.type))) {
-            //            System.out.println(6);
             return false;
         }
         if (!(typeShort == null ? other.typeShort == null : typeShort.equals(other.typeShort))) {
-            //            System.out.println(7);
             return false;
         }
         if (!(okato == null ? other.okato == null : okato.equals(other.okato))) {
-            //            System.out.println(8);
             return false;
         }
         if (!(this.getParents() == null ? other.getParents() == null : this.getParents().equals(other.getParents()))) {
-            //            System.out.println(9);
             return false;
         }
         return true;
@@ -247,12 +240,6 @@ public class KladrObject {
     }
 
     public List<KladrObject> getParents() {
-        //        if(parents != null) {
-        //        return parents;
-        //        } else {
-        //            return Collections.emptyList();
-        //        }
-
         return parents != null ? parents : Collections.<KladrObject>emptyList();
     }
 
