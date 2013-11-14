@@ -1,4 +1,4 @@
-Java client for kladr-api.ru
+## Java client for kladr-api.ru
 See: http://kladr-api.ru/
 
 Requires org.json JAR in you classpath.
@@ -6,7 +6,7 @@ See: http://www.json.org/ , https://code.google.com/p/org-json-java/downloads/li
 
 Oracle JDeveloper 11.1.2.3 project.
 
-# Usage Example
+## Usage Example
 ```java
 // демонстрационные токен и ключ
 String token = "51dfe5d42fb2b43e3300006e";
