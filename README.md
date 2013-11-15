@@ -1,7 +1,7 @@
 ## Java client for kladr-api.ru
 See: http://kladr-api.ru/
 
-Requires org.json JAR in you classpath.
+Requires org.json JAR library.
 See: http://www.json.org/ , https://code.google.com/p/org-json-java/downloads/list 
 
 Oracle JDeveloper 11.1.2.3 project.
